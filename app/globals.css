@@ -1,26 +1,230 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #6c3bf5;
+  --accent: #00b4d8;
+  --warm: #f59e0b;
+  --bg: #ffffff;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
+  color: #1e293b;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Grid background (light) ── */
+.grid-bg-light {
+  background-image:
+    linear-gradient(rgba(108, 59, 245, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(108, 59, 245, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── Light glass card ── */
+.card-light {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  border-radius: 1rem;
+}
+
+.card-light:hover {
+  box-shadow: 0 12px 40px rgba(108, 59, 245, 0.12);
+  border-color: rgba(108, 59, 245, 0.3);
+}
+
+/* ── Gradient text ── */
+.gradient-text {
+  background: linear-gradient(135deg, #6c3bf5, #00b4d8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-warm {
+  background: linear-gradient(135deg, #f59e0b, #ef4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  background: linear-gradient(135deg, #6c3bf5, #4f1fd4);
+  color: white;
+  padding: 0.7rem 1.75rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(108, 59, 245, 0.45);
+}
+
+.btn-accent {
+  background: linear-gradient(135deg, #6c3bf5, #00b4d8);
+  color: white;
+  padding: 0.7rem 1.75rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+.btn-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(108, 59, 245, 0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #6c3bf5;
+  padding: 0.7rem 1.75rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+  border: 2px solid #6c3bf5;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+.btn-outline:hover {
+  background: #6c3bf5;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(108, 59, 245, 0.3);
+}
+
+/* ── Section spacing ── */
+.section-py {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* ── Section label pill ── */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+/* ── Divider ── */
+.gradient-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #6c3bf5 30%, #00b4d8 70%, transparent);
+  opacity: 0.25;
+}
+
+/* ── Highlight card hover ── */
+.highlight-card {
+  transition: all 0.3s ease;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+}
+.highlight-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(108, 59, 245, 0.15);
+  border-color: rgba(108, 59, 245, 0.35);
+}
+
+/* ── Timeline dot pulse ── */
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(108, 59, 245, 0.5); }
+  50%       { box-shadow: 0 0 0 10px rgba(108, 59, 245, 0); }
+}
+.timeline-dot-active {
+  animation: dotPulse 2s ease-in-out infinite;
+}
+
+/* ── Floating orb ── */
+@keyframes floatOrb {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%       { transform: translateY(-20px) scale(1.04); }
+}
+.float-orb { animation: floatOrb 7s ease-in-out infinite; }
+.float-orb-slow { animation: floatOrb 10s ease-in-out infinite reverse; }
+
+/* ── Scroll indicator ── */
+@keyframes scrollBounce {
+  0%   { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(14px); }
+}
+.scroll-dot { animation: scrollBounce 1.5s ease-in-out infinite; }
+
+/* ── Counter animate ── */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.counter-animate { animation: countUp 0.5s ease-out forwards; }
+
+/* ── Navbar dropdown ── */
+.dropdown-menu {
+  transform-origin: top center;
+  transform: scaleY(0.92) translateY(-6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.dropdown-parent:hover .dropdown-menu,
+.dropdown-parent:focus-within .dropdown-menu {
+  transform: scaleY(1) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #6c3bf5; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #4f1fd4; }
+
+/* ── Hero particle ── */
+@keyframes particleDrift {
+  0%   { transform: translate(0,0) scale(1); opacity:0.7; }
+  50%  { transform: translate(15px,-30px) scale(1.15); opacity:1; }
+  100% { transform: translate(0,0) scale(1); opacity:0.7; }
+}
+.hero-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particleDrift ease-in-out infinite;
 }
