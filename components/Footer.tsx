@@ -56,7 +56,8 @@ export default function Footer() {
           width: "60vw", 
           height: "20vw", 
           background: "radial-gradient(circle, rgba(108,59,245,0.04) 0%, transparent 70%)", 
-          filter: "blur(80px)" 
+          filter: "blur(80px)", 
+          padding:"10px"
         }} />
       </div>
 
@@ -116,15 +117,15 @@ export default function Footer() {
           style={{ 
             display: "grid", 
             gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", 
-            gap: "32px" 
+            gap: "24px" 
           }}
         >
           {/* Column 1: Brand */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "16px",padding:"12px 48px" }}>
             <div style={{ 
               backgroundColor: "#ffffff", 
               width: "fit-content", 
-              padding: "6px 12px", 
+              padding: "12px 12px", 
               borderRadius: "8px"
             }}>
               <Image src="/logo.jpeg" alt="RAMP 2027" width={100} height={25} style={{ height: "25px", width: "auto" }} />
@@ -164,7 +165,7 @@ export default function Footer() {
 
           {/* Column 2: Navigation */}
           <div>
-            <h3 style={{ fontSize: "9px", fontWeight: 900, textTransform: "uppercase", color: "#ffffff", letterSpacing: "0.2em", marginBottom: "16px" }}>Nav</h3>
+            <h3 style={{ fontSize: "14px", fontWeight: 900, textTransform: "uppercase", color: "#ffffff", letterSpacing: "0.2em", marginBottom: "16px" }}>Nav</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
               {quickLinks.map((link) => (
                 <Link
@@ -181,7 +182,7 @@ export default function Footer() {
 
           {/* Column 3: IEEE */}
           <div>
-            <h3 style={{ fontSize: "9px", fontWeight: 900, textTransform: "uppercase", color: "#ffffff", letterSpacing: "0.2em", marginBottom: "16px" }}>IEEE</h3>
+            <h3 style={{ fontSize: "14px", fontWeight: 900, textTransform: "uppercase", color: "#ffffff", letterSpacing: "0.2em", marginBottom: "16px" }}>IEEE</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
               {ieeeLinks.map((link) => (
                 <a
@@ -200,7 +201,7 @@ export default function Footer() {
 
           {/* Column 4: Contact */}
           <div>
-            <h3 style={{ fontSize: "9px", fontWeight: 900, textTransform: "uppercase", color: "#ffffff", letterSpacing: "0.2em", marginBottom: "16px" }}>Contact</h3>
+            <h3 style={{ fontSize: "14px", fontWeight: 900, textTransform: "uppercase", color: "#ffffff", letterSpacing: "0.2em", marginBottom: "16px" }}>Contact</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
               {contactGroups.map((group) => (
                 <div key={group.title} style={{ display: "flex", flexDirection: "column", gap: "2px" }}>

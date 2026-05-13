@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata: Metadata = {
   title: {
@@ -53,6 +54,7 @@ export default function RootLayout({
           <SmoothScrollProvider>
             <Navbar />
             <main>{children}</main>
+            <ScrollToTop />
             <Footer />
           </SmoothScrollProvider>
         </ThemeProvider>

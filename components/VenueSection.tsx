@@ -26,13 +26,15 @@ export default function VenueSection() {
     <section
       className="relative overflow-hidden"
       style={{ 
-        backgroundColor: "#ffffff",
+        backgroundColor: isDark ? "#060714" : "#ffffff",
         minHeight: "100vh",
         width: "100%",
         padding: "120px 0",
         display: "flex",
         alignItems: "center",
-        backgroundImage: "radial-gradient(circle at 2px 2px, rgba(0,0,0,0.02) 1px, transparent 0)",
+        backgroundImage: isDark 
+          ? "radial-gradient(circle at 2px 2px, rgba(255,255,255,0.02) 1px, transparent 0)"
+          : "radial-gradient(circle at 2px 2px, rgba(0,0,0,0.02) 1px, transparent 0)",
         backgroundSize: "80px 80px"
       }}
     >
@@ -51,7 +53,7 @@ export default function VenueSection() {
               boxShadow: "0 0 15px currentColor",
               animationDuration: `${10 + Math.random() * 10}s`,
               animationDelay: `${Math.random() * 5}s`,
-              opacity: 0.05,
+              opacity: isDark ? 0.05 : 0.03,
             }}
           />
         ))}
@@ -78,9 +80,9 @@ export default function VenueSection() {
           >
             <div
               style={{
-                backgroundColor: "#f3f0ff",
+                backgroundColor: isDark ? "rgba(108,59,245,0.12)" : "#f3f0ff",
                 color: "#6c3bf5",
-                border: "1px solid #ddd6fe",
+                border: isDark ? "1px solid rgba(108,59,245,0.3)" : "1px solid #ddd6fe",
                 padding: "8px 24px",
                 borderRadius: "999px",
                 fontSize: "11px",
@@ -106,7 +108,7 @@ export default function VenueSection() {
               lineHeight: 1,
               letterSpacing: "-0.04em",
               fontWeight: 900,
-              color: "#0f172a",
+              color: isDark ? "#ffffff" : "#0f172a",
               marginBottom: "12px"
             }}
           >
@@ -152,8 +154,8 @@ export default function VenueSection() {
                   aspectRatio: "1/1",
                   borderRadius: "32px",
                   overflow: "hidden",
-                  boxShadow: "0 25px 50px -12px rgba(0,0,0,0.08)",
-                  border: "1px solid rgba(0,0,0,0.05)",
+                  boxShadow: isDark ? "0 25px 50px -12px rgba(0,0,0,0.5)" : "0 25px 50px -12px rgba(0,0,0,0.08)",
+                  border: isDark ? "1px solid rgba(255,255,255,0.05)" : "1px solid rgba(0,0,0,0.05)",
                   marginTop: i % 2 === 1 ? "40px" : "0",
                   transform: `rotate(${i % 2 === 0 ? '-1deg' : '1deg'})`
                 }}
@@ -165,7 +167,7 @@ export default function VenueSection() {
                   fill
                   className="object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
-                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(15,23,42,0.4), transparent 50%)" }} />
+                <div style={{ position: "absolute", inset: 0, background: isDark ? "linear-gradient(to top, rgba(15,23,42,0.6), transparent 50%)" : "linear-gradient(to top, rgba(15,23,42,0.4), transparent 50%)" }} />
                 <div style={{ position: "absolute", bottom: "20px", left: "20px", right: "20px" }}>
                   <p style={{ color: "#ffffff", fontSize: "12px", fontWeight: 700, lineHeight: 1.2 }}>{img.alt}</p>
                 </div>
@@ -173,7 +175,7 @@ export default function VenueSection() {
             ))}
           </div>
 
-          {/* Right — Info Cards (Awards Style - INTENSE HOVER) */}
+          {/* Right — Info Cards (Awards Style) */}
           <div style={{ display: "flex", flexDirection: "column", gap: "48px" }}>
             <motion.div
               initial={{ opacity: 0, x: 30 }}
@@ -186,7 +188,7 @@ export default function VenueSection() {
                   fontFamily: "'Space Grotesk', sans-serif", 
                   fontSize: "1.75rem", 
                   fontWeight: 800, 
-                  color: "#0f172a",
+                  color: isDark ? "#ffffff" : "#0f172a",
                   marginBottom: "24px"
                 }}
               >
@@ -194,17 +196,17 @@ export default function VenueSection() {
               </h3>
               <p
                 style={{ 
-                  color: "#64748b", 
+                  color: isDark ? "#94a3b8" : "#64748b", 
                   fontSize: "1.125rem", 
                   lineHeight: 1.7, 
                   fontWeight: 500 
                 }}
               >
-                Established in 1997, <strong style={{ color: "#0f172a" }}>ABV-IIITM Gwalior</strong> is an Institute of National Importance dedicated to the future of Technology and Management.
+                Established in 1997, <strong style={{ color: isDark ? "#ffffff" : "#0f172a" }}>ABV-IIITM Gwalior</strong> is an Institute of National Importance dedicated to the future of Technology and Management.
               </p>
             </motion.div>
 
-            {/* Info Grid (High Intensity Hover) */}
+            {/* Info Grid */}
             <div 
               style={{ 
                 display: "grid", 
@@ -220,11 +222,11 @@ export default function VenueSection() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   style={{
-                    backgroundColor: "#ffffff",
-                    border: "1px solid rgba(0,0,0,0.06)",
+                    backgroundColor: isDark ? "rgba(255,255,255,0.03)" : "#ffffff",
+                    border: isDark ? "1px solid rgba(255,255,255,0.06)" : "1px solid rgba(0,0,0,0.06)",
                     borderRadius: "24px",
                     padding: "32px 24px",
-                    boxShadow: "0 10px 25px -5px rgba(0,0,0,0.02)",
+                    boxShadow: isDark ? "0 10px 25px -5px rgba(0,0,0,0.5)" : "0 10px 25px -5px rgba(0,0,0,0.02)",
                     display: "flex",
                     flexDirection: "column",
                     gap: "16px",
@@ -238,13 +240,18 @@ export default function VenueSection() {
                   <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none"
                     style={{
-                      background: `linear-gradient(135deg, ${item.color}25 0%, ${item.color}05 100%)`, // Increased to 25% opacity
+                      background: isDark 
+                        ? `linear-gradient(135deg, ${item.color}25 0%, ${item.color}05 100%)`
+                        : `linear-gradient(135deg, ${item.color}15 0%, ${item.color}05 100%)`,
                     }}
                   />
                   
-                  {/* Effect: BRIGHTER Glass Shimmer sweep */}
+                  {/* Effect: Glass Shimmer sweep */}
                   <div
-                    className="absolute -inset-1 bg-gradient-to-r from-transparent via-white/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-1000 group-hover:translate-x-full pointer-events-none"
+                    className="absolute -inset-1 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-1000 group-hover:translate-x-full pointer-events-none"
+                    style={{
+                      via: isDark ? "white/10" : "white/60"
+                    }}
                   />
 
                   <div style={{ position: "relative", zIndex: 10 }}>
@@ -254,26 +261,38 @@ export default function VenueSection() {
                       style={{ 
                         backgroundColor: item.color,
                         width: "32px",
-                        height: "5px", // Slightly thicker
+                        height: "5px",
                         marginBottom: "20px",
                         boxShadow: `0 0 10px ${item.color}40`
                       }}
                     />
                     <p 
-                      className="transition-colors duration-500 group-hover:text-black"
-                      style={{ fontSize: "12px", fontWeight: 900, textTransform: "uppercase", color: "#0f172a", letterSpacing: "0.15em", marginBottom: "8px" }}
+                      className="transition-colors duration-500"
+                      style={{ 
+                        fontSize: "12px", 
+                        fontWeight: 900, 
+                        textTransform: "uppercase", 
+                        color: isDark ? "#ffffff" : "#0f172a", 
+                        letterSpacing: "0.15em", 
+                        marginBottom: "8px" 
+                      }}
                     >
                       {item.label}
                     </p>
                     <p 
-                      style={{ fontSize: "14px", fontWeight: 500, color: "#64748b", lineHeight: 1.5 }}
-                      className="transition-colors duration-500 group-hover:text-slate-800"
+                      style={{ 
+                        fontSize: "14px", 
+                        fontWeight: 500, 
+                        color: isDark ? "#94a3b8" : "#64748b", 
+                        lineHeight: 1.5 
+                      }}
+                      className="transition-colors duration-500"
                     >
                       {item.sub}
                     </p>
                   </div>
 
-                  {/* Added Bottom Glow Effect */}
+                  {/* Bottom Glow Effect */}
                   <div 
                     className="absolute bottom-0 left-0 w-full h-0.5 opacity-0 group-hover:opacity-100 transition-all duration-500"
                     style={{ backgroundColor: item.color, boxShadow: `0 0 15px ${item.color}` }}
@@ -297,13 +316,14 @@ export default function VenueSection() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  backgroundColor: "#0f172a",
+                  backgroundColor: isDark ? "rgba(255,255,255,0.05)" : "#0f172a",
                   color: "#ffffff",
                   padding: "24px 32px",
                   borderRadius: "24px",
                   textDecoration: "none",
                   transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-                  boxShadow: "0 20px 40px -10px rgba(15,23,42,0.2)"
+                  border: isDark ? "1px solid rgba(255,255,255,0.1)" : "none",
+                  boxShadow: isDark ? "0 20px 40px -10px rgba(0,0,0,0.3)" : "0 20px 40px -10px rgba(15,23,42,0.2)"
                 }}
                 className="group hover:bg-[#6c3bf5] hover:scale-[1.01] hover:shadow-3xl"
               >
