@@ -124,45 +124,48 @@ export default function CounterBar() {
 
       <div className="container-center relative z-10">
         {/* Header Section */}
-        <div className="text-center" style={{ marginBottom: "40px" }}>
+        <div className="flex flex-col items-center text-center" style={{ marginBottom: "60px", width: "100%" }}>
           <div 
-            className="inline-flex items-center px-3 py-1 rounded-full mb-4"
+            className="inline-flex items-center px-4 py-1.5 rounded-full mb-6"
             style={{ 
-              backgroundColor: "rgba(108,59,245,0.12)", 
-              border: "1px solid rgba(108,59,245,0.25)"
+              backgroundColor: "rgba(245,158,11,0.06)", 
+                border: "1px solid rgba(245,158,11,0.25)"
             }}
           >
             <span 
               style={{ 
-                fontSize: "10px", 
+                fontSize: "11px", 
                 fontWeight: 800, 
                 textTransform: "uppercase", 
-                letterSpacing: "0.2em", 
-                color: "#c4b5fd" 
+                letterSpacing: "0.25em", 
+                color: "#f59e0b" ,
+                padding: "10px 20px",
               }}
             >
               By The Numbers
             </span>
           </div>
           <h2
-            className="text-white font-extrabold"
+            className="text-white font-extrabold w-full text-center"
             style={{ 
-              fontSize: "clamp(2rem, 4vw, 3rem)", 
-              lineHeight: 1.2,
+              fontSize: "clamp(2.5rem, 5vw, 3.5rem)", 
+              lineHeight: 1.1,
               fontFamily: "'Space Grotesk', sans-serif",
-              letterSpacing: "-0.01em"
+              letterSpacing: "-0.02em",
+              marginTop:"12px"
             }}
           >
             RAMP 2027 <span className="gradient-text">At a Glance</span>
           </h2>
           <p 
-            className="mx-auto"
+            className="mx-auto text-center"
             style={{ 
-              marginTop: "12px", 
+              marginTop: "20px", 
               color: "#94a3b8", 
-              fontSize: "1rem", 
+              fontSize: "1.1rem", 
               fontWeight: 500,
-              maxWidth: "500px" 
+              maxWidth: "600px",
+              lineHeight: 1.6
             }}
           >
             Two days. Four disciplines. One premier IEEE event.

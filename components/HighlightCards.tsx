@@ -19,12 +19,40 @@ export default function HighlightCards() {
 
   return (
     <section
-      className="section-py"
-      style={{ backgroundColor: isDark ? "var(--bg)" : "#ffffff" }}
+      className="relative overflow-hidden flex items-center"
+      style={{ 
+        backgroundColor: "#060714",
+        minHeight: "100vh",
+        width: "100%",
+        padding: "120px 0",
+        backgroundImage: isDark
+          ? "radial-gradient(circle at 2px 2px, rgba(108,59,245,0.05) 1px, transparent 0)"
+          : "radial-gradient(circle at 2px 2px, rgba(0,0,0,0.02) 1px, transparent 0)",
+        backgroundSize: "60px 60px"
+      }}
     >
+      {/* Background Particles */}
+      {[...Array(15)].map((_, i) => (
+        <div
+          key={i}
+          className="hero-particle"
+          style={{
+            width: `${4 + (i % 3) * 2}px`,
+            height: `${4 + (i % 3) * 2}px`,
+            top: `${5 + ((i * 13) % 90)}%`,
+            left: `${2 + ((i * 19) % 95)}%`,
+            backgroundColor: i % 2 === 0 ? "#6c3bf5" : "#00b4d8",
+            boxShadow: "0 0 10px currentColor",
+            animationDuration: `${15 + (i % 5) * 4}s`,
+            animationDelay: `${(i * 0.4) % 6}s`,
+            opacity: 0.04,
+          }}
+        />
+      ))}
+
       <div className="container-center">
         {/* Heading */}
-        <div className="text-center mb-14">
+        <div className="text-center" style={{ marginBottom: "80px" }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -32,14 +60,15 @@ export default function HighlightCards() {
             transition={{ duration: 0.5 }}
           >
             <div
-              className="section-label mx-auto"
-              style={{
-                backgroundColor: isDark ? "rgba(0,180,216,0.12)" : "#e0f8ff",
-                color: "#00b4d8",
-                border: isDark ? "1px solid rgba(0,180,216,0.3)" : "1px solid #b3ecff",
+              className="inline-flex items-center px-6 py-2 rounded-full mb-6"
+              style={{ 
+                backgroundColor: "rgba(0,180,216,0.12)", 
+                border: "1px solid rgba(0,180,216,0.25)"
               }}
             >
-              Conference Highlights
+              <span style={{ fontSize: "11px", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.25em", color: "#99f6e4" }}>
+                Conference Highlights
+              </span>
             </div>
           </motion.div>
 
@@ -48,73 +77,72 @@ export default function HighlightCards() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-extrabold mt-2"
+            className="text-white font-extrabold"
             style={{
               fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: "clamp(1.8rem, 4vw, 2.75rem)",
-              color: isDark ? "var(--text-base)" : "#0f172a",
+              fontSize: "clamp(2.5rem, 5vw, 4rem)",
+              lineHeight: 1.1,
+              letterSpacing: "-0.02em"
             }}
           >
             What Makes <span className="gradient-text">RAMP 2027</span> Special
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-3 max-w-xl mx-auto"
-            style={{ color: isDark ? "var(--text-muted)" : "#64748b" }}
+            className="mt-6 max-w-2xl mx-auto"
+            style={{ color: "#94a3b8", fontSize: "1.125rem", lineHeight: 1.6 }}
           >
             A comprehensive 2-day event designed for researchers, engineers, and industry professionals.
           </motion.p>
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {highlights.map((item, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-30px" }}
-              transition={{ duration: 0.45, delay: i * 0.07, ease: "easeOut" }}
-              whileHover={{ y: -6, transition: { duration: 0.25 } }}
-              className="p-6 rounded-2xl group cursor-default relative overflow-hidden"
+              transition={{ duration: 0.6, delay: i * 0.08, ease: "easeOut" }}
+              className="group relative overflow-hidden rounded-[2.5rem] p-8 transition-all duration-500 hover:-translate-y-2"
               style={{
-                backgroundColor: isDark ? "var(--bg-card)" : "#ffffff",
-                border: isDark ? "1px solid var(--border)" : "1px solid #e2e8f0",
-                boxShadow: "var(--shadow-card)",
+                backgroundColor: "rgba(255,255,255,0.03)",
+                border: "1px solid rgba(255,255,255,0.06)",
+                backdropFilter: "blur(16px)",
               }}
             >
               {/* Icon */}
               <div
-                className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-5 transition-transform duration-300 group-hover:scale-110"
+                className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-8 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-lg"
                 style={{
-                  backgroundColor: `${item.color}${isDark ? "22" : "14"}`,
-                  border: `1.5px solid ${item.color}${isDark ? "40" : "28"}`,
+                  background: `linear-gradient(135deg, ${item.color}, ${item.color}cc)`,
+                  boxShadow: `0 8px 20px -4px ${item.color}50`
                 }}
               >
                 {item.icon}
               </div>
 
               <h3
-                className="text-base font-bold mb-2"
-                style={{ color: isDark ? "var(--text-base)" : "#0f172a" }}
+                className="text-xl font-extrabold mb-4 text-white"
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
                 {item.title}
               </h3>
-              <p
-                className="text-sm leading-relaxed"
-                style={{ color: isDark ? "var(--text-muted)" : "#64748b" }}
-              >
+              <p className="text-slate-400 text-sm font-medium leading-relaxed">
                 {item.desc}
               </p>
 
-              {/* Bottom accent */}
+              {/* Decorative Glow */}
               <div
-                className="absolute bottom-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ background: `linear-gradient(90deg, ${item.color}, transparent)` }}
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                style={{
+                  background: `radial-gradient(circle at bottom left, ${item.color}15, transparent 70%)`,
+                }}
               />
             </motion.div>
           ))}

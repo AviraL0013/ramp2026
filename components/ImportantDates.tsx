@@ -52,7 +52,7 @@ export default function ImportantDates() {
 
       <div className="container-center">
         {/* Header */}
-        <div className="text-center" style={{ marginBottom: "60px" }}>
+        <div className="flex flex-col items-center text-center" style={{ marginBottom: "60px", width: "100%" }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -129,10 +129,10 @@ export default function ImportantDates() {
               {dates.map((item, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-30px" }}
-                  transition={{ duration: 0.45, delay: i * 0.07 }}
+                  transition={{ duration: 0.8, delay: i * 0.12, ease: "easeOut" }}
                   className="flex flex-col items-center gap-3"
                 >
                   {/* Circle */}
@@ -209,7 +209,15 @@ export default function ImportantDates() {
                       </span>
                     )}
                     {item.state === "conference" && (
-                      <span className="inline-block mt-1.5 text-[9px] font-bold bg-[#f59e0b] text-white px-2 py-0.5 rounded-full uppercase tracking-wider">
+                      <span 
+                        className="inline-block mt-1.5 text-[9px] font-bold text-white px-3 py-1 rounded-full uppercase tracking-wider"
+                        style={{ 
+                          background: "linear-gradient(135deg, #f59e0b, #d97706)",
+                          boxShadow: "0 4px 12px -2px rgba(245,158,11,0.4)",
+                          padding: "5px 10px", 
+                          marginTop: "8px"
+                        }}
+                      >
                         Conference
                       </span>
                     )}

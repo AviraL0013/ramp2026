@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import HeroSection from "@/components/HeroSection";
 import CounterBar from "@/components/CounterBar";
 import WelcomeSection from "@/components/WelcomeSection";
-import SpeakersSection from "@/components/SpeakersSection";
 import ImportantDates from "@/components/ImportantDates";
 import CallForPapersSection from "@/components/CallForPapersSection";
 import HighlightCards from "@/components/HighlightCards";
-import SponsorsSection from "@/components/SponsorsSection";
 import VenueSection from "@/components/VenueSection";
 
 export const metadata: Metadata = {
@@ -24,7 +22,6 @@ export default function HomePage() {
       <ImportantDates />
       <CallForPapersSection />
       <HighlightCards />
-      <SponsorsSection />
       <VenueSection />
     </>
   );

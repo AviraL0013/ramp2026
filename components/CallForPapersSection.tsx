@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useRef } from "react";
 import { useTheme } from "@/components/ThemeProvider";
 
 const topics = [
@@ -14,9 +15,28 @@ const topics = [
   "Wearable Electronics", "Software-Defined Radio",
 ];
 
-const topicColors = [
-  "#6c3bf5", "#00b4d8", "#f59e0b", "#10b981", "#ef4444",
-  "#8b5cf6", "#3b82f6", "#ec4899", "#14b8a6", "#f97316",
+const submissionSteps = [
+  {
+    title: "Full Paper",
+    desc: "Present your original research findings. Accepted papers will be published in the conference proceedings and submitted for inclusion in IEEE Xplore, subject to meeting quality standards.",
+    detail: "4–6 Pages • IEEE Standard Format • Double Blind Review",
+    badge: "Deadline Oct 31",
+    color: "#6c3bf5"
+  },
+  {
+    title: "Special Sessions",
+    desc: "Organize a session on a specific topic of interest. Proposals should include a brief description, list of potential speakers, and the significance of the session.",
+    detail: "Topic Proposals • Expert Panels • Invited Talks",
+    badge: "Deadline Oct 15",
+    color: "#00b4d8"
+  },
+  {
+    title: "IEEE Xplore",
+    desc: "Maximize your research impact. All presented papers undergo a rigorous peer-review process and are indexed globally to ensure maximum visibility for your work.",
+    detail: "Global Indexing • High Citation Potential",
+    badge: "Publication",
+    color: "#10b981"
+  },
 ];
 
 export default function CallForPapersSection() {
@@ -25,22 +45,47 @@ export default function CallForPapersSection() {
 
   return (
     <section
-      className="section-py relative overflow-hidden"
-      style={{ backgroundColor: isDark ? "var(--bg-muted)" : "#f8fafc" }}
+      className="relative overflow-hidden"
+      style={{ 
+        padding: "70px 0",
+        minHeight: "80vh",
+        backgroundColor: isDark ? "var(--bg)" : "#ffffff",
+        backgroundImage: isDark
+          ? "radial-gradient(circle at 2px 2px, rgba(108,59,245,0.03) 1px, transparent 0)"
+          : "radial-gradient(circle at 2px 2px, rgba(0,0,0,0.02) 1px, transparent 0)",
+        backgroundSize: "80px 80px"
+      }}
     >
-      {/* Background decorative blobs */}
-      <div
-        className="absolute top-0 left-0 w-96 h-96 rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(108,59,245,0.06) 0%, transparent 70%)", transform: "translate(-40%, -40%)" }}
-      />
-      <div
-        className="absolute bottom-0 right-0 w-80 h-80 rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(0,180,216,0.06) 0%, transparent 70%)", transform: "translate(30%, 30%)" }}
-      />
+      {/* Cinematic Background Particles (Like in Hero) */}
+      <div className="absolute inset-0 z-0">
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="hero-particle"
+            style={{
+              width: `${Math.random() * 6 + 2}px`,
+              height: `${Math.random() * 6 + 2}px`,
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              backgroundColor: i % 2 === 0 ? "#6c3bf5" : "#00b4d8",
+              boxShadow: "0 0 15px currentColor",
+              animationDuration: `${Math.random() * 10 + 10}s`,
+              animationDelay: `${Math.random() * 5}s`,
+              opacity: isDark ? 0.08 : 0.04,
+            }}
+          />
+        ))}
+        {/* Large Atmospheric Glows (Hero Style) */}
+        <div className="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] bg-[#6c3bf5]/5 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-[50vw] h-[50vw] bg-[#00b4d8]/5 rounded-full blur-[150px] animate-pulse" />
+      </div>
 
       <div className="container-center relative z-10">
-        {/* Header */}
-        <div className="text-center mb-14">
+        {/* Header Section */}
+        <div 
+          className="flex flex-col items-center text-center"
+          style={{ marginBottom: "20px" }}
+        >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -50,12 +95,18 @@ export default function CallForPapersSection() {
             <div
               className="section-label mx-auto"
               style={{
-                backgroundColor: isDark ? "rgba(108,59,245,0.15)" : "#f3f0ff",
+                backgroundColor: isDark ? "rgba(108,59,245,0.14)" : "#f3f0ff",
                 color: "#6c3bf5",
-                border: isDark ? "1px solid rgba(108,59,245,0.35)" : "1px solid #ddd6fe",
+                border: isDark ? "1px solid rgba(108,59,245,0.22)" : "1px solid #ddd6fe",
+                padding: "6px 20px",
+                borderRadius: "999px",
+                fontSize: "11px",
+                fontWeight: 700,
+                textTransform: "uppercase",
+                letterSpacing: "0.12em",
               }}
             >
-              📄 Call for Papers
+              Call For Papers
             </div>
           </motion.div>
 
@@ -64,14 +115,16 @@ export default function CallForPapersSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-extrabold mt-2"
+            className="font-extrabold mt-6"
             style={{
               fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: "clamp(1.8rem, 4vw, 2.75rem)",
+              fontSize: "clamp(2rem, 4vw, 3rem)",
+              lineHeight: 1.1,
+              letterSpacing: "-0.02em",
               color: isDark ? "var(--text-base)" : "#0f172a",
             }}
           >
-            Submit Your <span className="gradient-text">Research</span>
+            Submit Your <span className="gradient-text">Research.</span>
           </motion.h2>
 
           <motion.p
@@ -79,133 +132,183 @@ export default function CallForPapersSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-3 max-w-2xl mx-auto"
-            style={{ color: isDark ? "var(--text-muted)" : "#64748b" }}
+            className="mt-4 max-w-xl text-[#64748b] text-base font-medium"
+            style={{ 
+              lineHeight: 1.6,
+              color: isDark ? "var(--text-muted)" : "#64748b"
+            }}
           >
-            We invite original, unpublished research papers on all aspects of
-            RF, Antenna, Microwave, and Photonic technologies. Papers accepted
-            and presented will be submitted for inclusion in IEEE Xplore.
+            Join a global community of innovators. We invite original research in RF, Microwave, and Photonic technologies.
           </motion.p>
         </div>
 
-        {/* Two-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left — Topics */}
-          <div>
-            <motion.h3
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="text-lg font-bold mb-6"
-              style={{ color: isDark ? "var(--text-base)" : "#0f172a" }}
+        {/* WHITE Marquee Area */}
+        <div 
+          className="relative overflow-hidden border-y border-slate-100"
+          style={{ 
+            marginBottom: "30px", 
+            padding: "20px 0",
+            backgroundColor: isDark ? "rgba(255,255,255,0.02)" : "#ffffff",
+            marginLeft: "-100vw",
+            marginRight: "-100vw",
+            paddingLeft: "100vw",
+            paddingRight: "100vw"
+          }}
+        >
+          <div className="flex whitespace-nowrap">
+            <motion.div 
+              animate={{ x: [0, -1000] }}
+              transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+              className="flex gap-16 items-center px-8"
             >
-              Topics of Interest
-            </motion.h3>
-            <div className="flex flex-wrap gap-2.5">
-              {topics.map((topic, i) => {
-                const color = topicColors[i % topicColors.length];
-                return (
-                  <motion.span
-                    key={i}
-                    initial={{ opacity: 0, scale: 0.85 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: i * 0.04 }}
-                    className="text-xs font-semibold px-3.5 py-2 rounded-full cursor-default transition-all duration-200 hover:scale-105"
-                    style={{
-                      backgroundColor: `${color}${isDark ? "22" : "14"}`,
-                      color: color,
-                      border: `1px solid ${color}${isDark ? "45" : "30"}`,
-                    }}
-                  >
-                    {topic}
-                  </motion.span>
-                );
-              })}
-            </div>
+              {topics.map((topic, i) => (
+                <span
+                  key={i}
+                  className="text-lg font-bold"
+                  style={{ 
+                    fontFamily: "'Space Grotesk', sans-serif",
+                    color: isDark ? "#ffffff40" : "#4c1d95" 
+                  }}
+                >
+                  {topic}
+                </span>
+              ))}
+            </motion.div>
+            <motion.div 
+              animate={{ x: [0, -1000] }}
+              transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+              className="flex gap-16 items-center px-8"
+            >
+              {topics.map((topic, i) => (
+                <span
+                  key={`dup-${i}`}
+                  className="text-lg font-bold"
+                  style={{ 
+                    fontFamily: "'Space Grotesk', sans-serif",
+                    color: isDark ? "#ffffff40" : "#4c1d95" 
+                  }}
+                >
+                  {topic}
+                </span>
+              ))}
+            </motion.div>
           </div>
+        </div>
 
-          {/* Right — Submission Info */}
-          <div className="space-y-5">
-            {[
-              {
-                icon: "📝",
-                title: "Full Paper Submission",
-                desc: "Submit original research papers (4–6 pages) in IEEE two-column format via the submission portal.",
-                badge: "Oct 31, 2026",
-                badgeColor: "#6c3bf5",
-              },
-              {
-                icon: "🎯",
-                title: "Special Sessions",
-                desc: "Propose focused special sessions on emerging topics in RF, microwave, and photonics.",
-                badge: "Oct 15, 2026",
-                badgeColor: "#00b4d8",
-              },
-              {
-                icon: "📚",
-                title: "IEEE Xplore Publication",
-                desc: "All accepted and presented papers will be submitted for indexing in IEEE Xplore digital library.",
-                badge: "IEEE Indexed",
-                badgeColor: "#10b981",
-              },
-              {
-                icon: "🏅",
-                title: "Best Paper Awards",
-                desc: "Outstanding papers will be recognized with Best Paper Awards across different tracks.",
-                badge: "Cash Prizes",
-                badgeColor: "#f59e0b",
-              },
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: i * 0.1 }}
-                className="flex gap-4 p-5 rounded-2xl"
-                style={{
-                  backgroundColor: isDark ? "var(--bg-card)" : "#ffffff",
-                  border: isDark ? "1px solid var(--border)" : "1px solid #e2e8f0",
-                  boxShadow: "var(--shadow-card)",
-                }}
-              >
-                <span className="text-2xl shrink-0 mt-0.5">{item.icon}</span>
-                <div className="flex-1">
-                  <div className="flex items-start justify-between gap-2 flex-wrap">
-                    <h4 className="font-bold text-sm" style={{ color: isDark ? "var(--text-base)" : "#0f172a" }}>
-                      {item.title}
-                    </h4>
-                    <span
-                      className="text-[10px] font-bold px-2.5 py-1 rounded-full shrink-0"
-                      style={{ backgroundColor: `${item.badgeColor}18`, color: item.badgeColor, border: `1px solid ${item.badgeColor}35` }}
-                    >
-                      {item.badge}
-                    </span>
-                  </div>
-                  <p className="text-sm mt-1 leading-relaxed" style={{ color: isDark ? "var(--text-muted)" : "#64748b" }}>
-                    {item.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-
+        {/* Cards */}
+        <div 
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          style={{ display: "grid", width: "100%" }}
+        >
+          {submissionSteps.map((step, i) => (
             <motion.div
+              key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex flex-wrap gap-4 pt-2"
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="group relative overflow-hidden transition-all duration-700 hover:-translate-y-2 cursor-default shadow-sm hover:shadow-xl"
+              style={{
+                backgroundColor: isDark ? "rgba(108,59,245,0.05)" : "rgba(255,255,255,0.7)",
+                border: isDark ? "1px solid rgba(108,59,245,0.1)" : "1px solid rgba(0,0,0,0.06)",
+                borderRadius: "24px",
+                padding: "40px 32px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                textAlign: "center",
+                backdropFilter: "blur(12px)",
+              }}
             >
-              <Link href="/authors/call-for-papers" className="btn-accent">
-                Submit Paper →
-              </Link>
-              <Link href="/authors/call-for-special-sessions" className="btn-outline">
-                Propose Session
-              </Link>
+              {/* Hover Filling Effect */}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none"
+                style={{
+                  background: isDark 
+                    ? `linear-gradient(135deg, ${step.color}25 0%, transparent 100%)`
+                    : `linear-gradient(135deg, ${step.color}10 0%, ${step.color}05 100%)`,
+                }}
+              />
+              
+              <div
+                className="absolute -inset-1 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-1000 group-hover:translate-x-full pointer-events-none"
+              />
+
+              <div className="relative z-10 flex flex-col items-center w-full">
+                <span 
+                  className="px-4 py-1.5 rounded-full mb-6 inline-block font-bold uppercase transition-all duration-500 group-hover:scale-110"
+                  style={{ 
+                    backgroundColor: `${step.color}15`, 
+                    color: step.color,
+                    fontSize: "9px",
+                    letterSpacing: "0.15em",
+                    border: `1px solid ${step.color}25`
+                  }}
+                >
+                  {step.badge}
+                </span>
+                
+                <h3 
+                  className="text-2xl font-bold tracking-tight mb-4 transition-colors duration-500" 
+                  style={{ 
+                    fontFamily: "'Space Grotesk', sans-serif",
+                    color: isDark ? "var(--text-base)" : "#0f172a"
+                  }}
+                >
+                  {step.title}
+                </h3>
+                
+                <p 
+                  className="text-sm font-medium leading-relaxed mb-8 transition-colors duration-500"
+                  style={{ 
+                    maxWidth: "280px",
+                    color: isDark ? "var(--text-muted)" : "#64748b"
+                  }}
+                >
+                  {step.desc}
+                </p>
+
+                <div 
+                  className="w-full pt-6"
+                  style={{ borderTop: isDark ? "1px solid rgba(255,255,255,0.05)" : "1px solid rgba(0,0,0,0.03)" }}
+                >
+                  <span 
+                    className="text-[10px] font-bold uppercase tracking-widest text-slate-400 group-hover:text-slate-600 transition-colors duration-500"
+                  >
+                    {step.detail}
+                  </span>
+                </div>
+              </div>
+
+              <div 
+                className="absolute top-0 left-0 w-full h-1"
+                style={{ backgroundColor: step.color }}
+              />
             </motion.div>
-          </div>
+          ))}
+        </div>
+
+        {/* CTA Button */}
+        <div 
+          className="text-center"
+          style={{ marginTop: "50px" }}
+        >
+          <Link 
+            href="/authors/call-for-papers" 
+            className="inline-flex items-center gap-3 group transition-all duration-300"
+            style={{
+              backgroundColor: isDark ? "#6c3bf5" : "#0f172a",
+              color: "white",
+              padding: "18px 48px",
+              borderRadius: "999px",
+              fontSize: "16px",
+              fontWeight: 700,
+              boxShadow: isDark ? "0 10px 30px rgba(108,59,245,0.3)" : "0 15px 40px rgba(15, 23, 42, 0.2)",
+            }}
+          >
+            Submit Your Research
+            <span className="text-xl transition-transform duration-300 group-hover:translate-x-2">→</span>
+          </Link>
         </div>
       </div>
     </section>
