@@ -4,14 +4,18 @@ import { motion } from "framer-motion";
 import { useTheme } from "@/components/ThemeProvider";
 
 const highlights = [
-  { icon: "🏛️", color: "#6c3bf5", title: "Government Participation", desc: "Active participation from ministries of the Government of India." },
-  { icon: "🎤", color: "#00b4d8", title: "Keynote & Plenary Talks", desc: "World-renowned academics, industry leaders and research pioneers." },
-  { icon: "💡", color: "#f59e0b", title: "Expert Invited Talks", desc: "Globally reputed experts on cutting-edge RF and photonics topics." },
-  { icon: "📊", color: "#10b981", title: "Technical Sessions", desc: "Focused sessions on emerging areas, panels, and workshops." },
-  { icon: "🏭", color: "#ef4444", title: "Industry Exhibitions", desc: "Showcasing key product launches and innovations in RF & microwave." },
-  { icon: "🗂️", color: "#3b82f6", title: "80+ Exhibition Booths", desc: "Industry booths featuring the latest in antenna and photonics technology." },
-  { icon: "📚", color: "#8b5cf6", title: "International Book Stalls", desc: "Esteemed publishers with live reading library corners." },
+  { color: "#6c3bf5", title: "Government Participation", desc: "Active participation from ministries of the Government of India." },
+  { color: "#00b4d8", title: "Keynote & Plenary Talks", desc: "World-renowned academics, industry leaders and research pioneers." },
+  { color: "#f59e0b", title: "Expert Invited Talks", desc: "Globally reputed experts on cutting-edge RF and photonics topics." },
+  { color: "#10b981", title: "Technical Sessions", desc: "Focused sessions on emerging areas, panels, and workshops." },
+  { color: "#ef4444", title: "Industry Exhibitions", desc: "Showcasing key product launches and innovations in RF & microwave." },
+  { color: "#3b82f6", title: "80+ Exhibition Booths", desc: "Industry booths featuring the latest in antenna and photonics technology." },
 ];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  show:   { opacity: 1, y: 0 },
+};
 
 export default function HighlightCards() {
   const { theme } = useTheme();
@@ -19,12 +23,14 @@ export default function HighlightCards() {
 
   return (
     <section
-      className="relative overflow-hidden flex items-center"
+      className="relative overflow-hidden"
       style={{ 
         backgroundColor: "#060714",
         minHeight: "100vh",
         width: "100%",
-        padding: "120px 0",
+        padding: "100px 0",
+        display: "flex",
+        alignItems: "center",
         backgroundImage: isDark
           ? "radial-gradient(circle at 2px 2px, rgba(108,59,245,0.05) 1px, transparent 0)"
           : "radial-gradient(circle at 2px 2px, rgba(0,0,0,0.02) 1px, transparent 0)",
@@ -50,9 +56,17 @@ export default function HighlightCards() {
         />
       ))}
 
-      <div className="container-center">
-        {/* Heading */}
-        <div className="text-center" style={{ marginBottom: "80px" }}>
+      <div className="container-center" style={{ width: "100%", position: "relative", zIndex: 10 }}>
+        {/* Heading Section */}
+        <div 
+          style={{ 
+            display: "flex", 
+            flexDirection: "column", 
+            alignItems: "center", 
+            textAlign: "center", 
+            marginBottom: "50px" 
+          }}
+        >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -60,15 +74,21 @@ export default function HighlightCards() {
             transition={{ duration: 0.5 }}
           >
             <div
-              className="inline-flex items-center px-6 py-2 rounded-full mb-6"
-              style={{ 
-                backgroundColor: "rgba(0,180,216,0.12)", 
-                border: "1px solid rgba(0,180,216,0.25)"
+              className="section-label"
+              style={{
+                backgroundColor: "rgba(0,180,216,0.12)",
+                color: "#99f6e4",
+                border: "1px solid rgba(0,180,216,0.25)",
+                margin: "0 auto 20px",
+                padding: "8px 24px",
+                borderRadius: "999px",
+                fontSize: "11px",
+                fontWeight: 900,
+                textTransform: "uppercase",
+                letterSpacing: "0.4em"
               }}
             >
-              <span style={{ fontSize: "11px", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.25em", color: "#99f6e4" }}>
-                Conference Highlights
-              </span>
+              Conference Highlights
             </div>
           </motion.div>
 
@@ -77,12 +97,14 @@ export default function HighlightCards() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-white font-extrabold"
             style={{
               fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: "clamp(2.5rem, 5vw, 4rem)",
+              fontSize: "clamp(2.5rem, 5vw, 3.5rem)",
               lineHeight: 1.1,
-              letterSpacing: "-0.02em"
+              letterSpacing: "-0.02em",
+              marginTop: "20px",
+              fontWeight: 800,
+              color: "#ffffff"
             }}
           >
             What Makes <span className="gradient-text">RAMP 2027</span> Special
@@ -93,57 +115,172 @@ export default function HighlightCards() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-6 max-w-2xl mx-auto"
-            style={{ color: "#94a3b8", fontSize: "1.125rem", lineHeight: 1.6 }}
+            style={{ 
+              color: "#94a3b8", 
+              fontSize: "1.125rem", 
+              lineHeight: 1.6, 
+              textAlign: "center", 
+              maxWidth: "672px", 
+              margin: "24px auto 0",
+              display: "block"
+            }}
           >
             A comprehensive 2-day event designed for researchers, engineers, and industry professionals.
           </motion.p>
+
+          {/* Conference Details Pills */}
+          <motion.div
+            variants={fadeUp} initial="hidden" whileInView="show"
+            viewport={{ once: true, margin: "-30px" }}
+            transition={{ duration: 0.45, delay: 0.4 }}
+            style={{ 
+              display: "flex", 
+              flexWrap: "wrap", 
+              alignItems: "center", 
+              justifyContent: "center", 
+              gap: "16px",
+              marginTop: "40px" 
+            }}
+          >
+            {/* Date box */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+                padding: "12px 20px",
+                borderRadius: "16px",
+                backgroundColor: "rgba(108,59,245,0.12)",
+                border: "1px solid rgba(108,59,245,0.3)",
+                boxShadow: "0 8px 30px rgba(0,0,0,0.3)",
+              }}
+            >
+              <div style={{ width: "36px", height: "36px", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "rgba(108,59,245,0.25)" }}>
+                <svg style={{ width: "18px", height: "18px" }} fill="none" viewBox="0 0 24 24" stroke="#6c3bf5" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div style={{ textAlign: "left" }}>
+                <p style={{ fontSize: "10px", fontWeight: 800, textTransform: "uppercase", letterSpacing: "1.5px", color: "#a78bfa", marginBottom: "2px" }}>Dates</p>
+                <p style={{ fontSize: "15px", fontWeight: 800, color: "#ffffff" }}>Jan 26 – 27, 2027</p>
+              </div>
+            </div>
+
+            {/* Venue box */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+                padding: "12px 20px",
+                borderRadius: "16px",
+                backgroundColor: "rgba(245,158,11,0.12)",
+                border: "1px solid rgba(245,158,11,0.3)",
+                boxShadow: "0 8px 30px rgba(0,0,0,0.3)",
+              }}
+            >
+              <div style={{ width: "36px", height: "36px", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "rgba(245,158,11,0.25)" }}>
+                <svg style={{ width: "18px", height: "18px" }} fill="none" viewBox="0 0 24 24" stroke="#f59e0b" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                </svg>
+              </div>
+              <div style={{ textAlign: "left" }}>
+                <p style={{ fontSize: "10px", fontWeight: 800, textTransform: "uppercase", letterSpacing: "1.5px", color: "#fcd34d", marginBottom: "2px" }}>Location</p>
+                <p style={{ fontSize: "15px", fontWeight: 800, color: "#ffffff" }}>ABV-IIITM Gwalior</p>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {/* Grid with explicit Style alignment */}
+        <div 
+          style={{ 
+            display: "grid", 
+            width: "100%", 
+            marginTop: "20px",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "24px"
+          }}
+        >
           {highlights.map((item, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-30px" }}
-              transition={{ duration: 0.6, delay: i * 0.08, ease: "easeOut" }}
-              className="group relative overflow-hidden rounded-[2.5rem] p-8 transition-all duration-500 hover:-translate-y-2"
+              viewport={{ once: true, margin: "-20px" }}
+              transition={{ duration: 0.5, delay: i * 0.05, ease: "easeOut" }}
+              className="group relative overflow-hidden transition-all duration-500 hover:-translate-y-2 cursor-default"
               style={{
                 backgroundColor: "rgba(255,255,255,0.03)",
                 border: "1px solid rgba(255,255,255,0.06)",
-                backdropFilter: "blur(16px)",
+                borderRadius: "24px",
+                padding: "40px 32px",
+                backdropFilter: "blur(12px)",
+                display: "flex",
+                flexDirection: "column",
+                minHeight: "240px",
+                position: "relative"
               }}
             >
-              {/* Icon */}
+              {/* Hover Fill Effect */}
               <div
-                className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-8 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-lg"
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none"
                 style={{
-                  background: `linear-gradient(135deg, ${item.color}, ${item.color}cc)`,
-                  boxShadow: `0 8px 20px -4px ${item.color}50`
-                }}
-              >
-                {item.icon}
-              </div>
-
-              <h3
-                className="text-xl font-extrabold mb-4 text-white"
-                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-              >
-                {item.title}
-              </h3>
-              <p className="text-slate-400 text-sm font-medium leading-relaxed">
-                {item.desc}
-              </p>
-
-              {/* Decorative Glow */}
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
-                style={{
-                  background: `radial-gradient(circle at bottom left, ${item.color}15, transparent 70%)`,
+                  background: `linear-gradient(135deg, ${item.color}15 0%, ${item.color}05 100%)`,
                 }}
               />
+              
+              {/* Glass Shimmer sweep */}
+              <div
+                className="absolute -inset-1 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-1000 group-hover:translate-x-full pointer-events-none"
+              />
+
+              <div style={{ position: "relative", zIndex: 10, display: "flex", flexDirection: "column", height: "100%" }}>
+                {/* Expanding Accent Line */}
+                <div 
+                  className="transition-all duration-500 group-hover:w-16"
+                  style={{ 
+                    backgroundColor: item.color,
+                    width: "32px", // w-8
+                    height: "4px",
+                    marginBottom: "24px"
+                  }}
+                />
+
+                <h3
+                  className="transition-all duration-500 group-hover:translate-x-1"
+                  style={{ 
+                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontSize: "1.25rem", // text-xl
+                    fontWeight: 800,
+                    marginBottom: "16px",
+                    color: "#ffffff",
+                    lineHeight: 1.2,
+                    letterSpacing: "-0.01em"
+                  }}
+                >
+                  {item.title}
+                </h3>
+                <p 
+                  className="transition-colors duration-500 group-hover:text-slate-200"
+                  style={{ 
+                    color: "#94a3b8", 
+                    fontSize: "15px", 
+                    fontWeight: 500, 
+                    lineHeight: 1.6,
+                  }}
+                >
+                  {item.desc}
+                </p>
+
+                {/* Decorative Corner Glow */}
+                <div
+                  className="absolute bottom-[-10px] right-[-10px] w-24 h-24 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                  style={{
+                    background: `radial-gradient(circle at bottom right, ${item.color}20, transparent 70%)`,
+                  }}
+                />
+              </div>
             </motion.div>
           ))}
         </div>

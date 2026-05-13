@@ -21,7 +21,7 @@ export default function WelcomeSection() {
       className="relative overflow-hidden flex items-center"
       style={{ 
         backgroundColor: isDark ? "var(--bg)" : "#ffffff",
-        minHeight: "90vh",
+        minHeight: "100vh",
         backgroundImage: isDark
           ? "radial-gradient(circle at 2px 2px, rgba(108,59,245,0.03) 1px, transparent 0)"
           : "radial-gradient(circle at 2px 2px, rgba(0,0,0,0.02) 1px, transparent 0)",
@@ -116,7 +116,7 @@ export default function WelcomeSection() {
               transition={{ duration: 0.45, delay: 0.14 + i * 0.09 }}
               className="leading-relaxed mt-4"
               style={{
-                fontSize: "0.9375rem",
+                fontSize: "1.2rem",
                 color: isDark ? "var(--text-muted)" : "#64748b",
               }}
             >

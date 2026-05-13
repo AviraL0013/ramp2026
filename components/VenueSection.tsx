@@ -5,17 +5,17 @@ import { motion } from "framer-motion";
 import { useTheme } from "@/components/ThemeProvider";
 
 const venueImages = [
-  { src: "https://placehold.co/600x400/f3f0ff/6c3bf5?text=Main+Hall", alt: "Main Conference Hall" },
-  { src: "https://placehold.co/600x400/e0f8ff/00b4d8?text=Exhibition+Area", alt: "Exhibition Area" },
-  { src: "https://placehold.co/600x400/fef9e7/f59e0b?text=Auditorium", alt: "Auditorium" },
-  { src: "https://placehold.co/600x400/ecfdf5/10b981?text=ABV-IIITM+Campus", alt: "ABV-IIITM Gwalior Campus" },
+  { src: "https://placehold.co/800x600/f3f0ff/6c3bf5?text=Main+Hall", alt: "Main Conference Hall" },
+  { src: "https://placehold.co/800x600/e0f8ff/00b4d8?text=Exhibition+Area", alt: "Exhibition Area" },
+  { src: "https://placehold.co/800x600/fef9e7/f59e0b?text=Auditorium", alt: "Auditorium" },
+  { src: "https://placehold.co/800x600/ecfdf5/10b981?text=ABV-IIITM+Campus", alt: "ABV-IIITM Gwalior Campus" },
 ];
 
 const tiles = [
-  { icon: "✈️", label: "Gwalior Airport", sub: "Connected to major cities" },
-  { icon: "🚆", label: "Gwalior Railway Station", sub: "Well connected pan-India" },
-  { icon: "🏨", label: "Partner Hotels", sub: "Special conference rates" },
-  { icon: "🏰", label: "Gwalior Fort", sub: "UNESCO-listed heritage site" },
+  { color: "#6c3bf5", label: "Gwalior Airport", sub: "Direct Flights from Mumbai, Delhi, Bangalore" },
+  { color: "#00b4d8", label: "Railway Station", sub: "Major Rail Hub - Superfast Connectivity" },
+  { color: "#f59e0b", label: "Partner Hotels", sub: "Elite Accommodation with Special Rates" },
+  { color: "#10b981", label: "Gwalior Fort", sub: "UNESCO-listed UNESCO World Heritage site" },
 ];
 
 export default function VenueSection() {
@@ -24,56 +24,74 @@ export default function VenueSection() {
 
   return (
     <section
-      className="relative overflow-hidden flex items-center"
+      className="relative overflow-hidden"
       style={{ 
-        backgroundColor: "#060714",
+        backgroundColor: "#ffffff",
         minHeight: "100vh",
         width: "100%",
         padding: "120px 0",
-        backgroundImage: isDark
-          ? "radial-gradient(circle at 2px 2px, rgba(108,59,245,0.05) 1px, transparent 0)"
-          : "radial-gradient(circle at 2px 2px, rgba(0,0,0,0.02) 1px, transparent 0)",
-        backgroundSize: "60px 60px"
+        display: "flex",
+        alignItems: "center",
+        backgroundImage: "radial-gradient(circle at 2px 2px, rgba(0,0,0,0.02) 1px, transparent 0)",
+        backgroundSize: "80px 80px"
       }}
     >
-      {/* Background Particles */}
-      {[...Array(15)].map((_, i) => (
-        <div
-          key={i}
-          className="hero-particle"
-          style={{
-            width: `${4 + (i % 3) * 2}px`,
-            height: `${4 + (i % 3) * 2}px`,
-            top: `${5 + ((i * 13) % 90)}%`,
-            left: `${2 + ((i * 19) % 95)}%`,
-            backgroundColor: i % 2 === 0 ? "#6c3bf5" : "#00b4d8",
-            boxShadow: "0 0 10px currentColor",
-            animationDuration: `${15 + (i % 5) * 4}s`,
-            animationDelay: `${(i * 0.4) % 6}s`,
-            opacity: 0.04,
-          }}
-        />
-      ))}
+      {/* Cinematic Background Particles */}
+      <div style={{ position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none" }}>
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="hero-particle"
+            style={{
+              width: `${Math.random() * 6 + 2}px`,
+              height: `${Math.random() * 6 + 2}px`,
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              backgroundColor: i % 2 === 0 ? "#6c3bf5" : "#00b4d8",
+              boxShadow: "0 0 15px currentColor",
+              animationDuration: `${10 + Math.random() * 10}s`,
+              animationDelay: `${Math.random() * 5}s`,
+              opacity: 0.05,
+            }}
+          />
+        ))}
+        <div style={{ position: "absolute", top: "10%", right: "10%", width: "40vw", height: "40vw", backgroundColor: "rgba(108,59,245,0.03)", borderRadius: "100%", filter: "blur(120px)", animation: "pulse 10s infinite" }} />
+        <div style={{ position: "absolute", bottom: "10%", left: "10%", width: "50vw", height: "50vw", backgroundColor: "rgba(0,180,216,0.03)", borderRadius: "100%", filter: "blur(150px)", animation: "pulse 12s infinite" }} />
+      </div>
 
-      <div className="container-center">
-        {/* Header */}
-        <div className="text-center" style={{ marginBottom: "80px" }}>
+      <div className="container-center" style={{ position: "relative", zIndex: 10, width: "100%" }}>
+        {/* Header Section */}
+        <div 
+          style={{ 
+            display: "flex", 
+            flexDirection: "column", 
+            alignItems: "center", 
+            textAlign: "center", 
+            marginBottom: "80px" 
+          }}
+        >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6 }}
           >
             <div
-              className="inline-flex items-center px-6 py-2 rounded-full mb-6"
-              style={{ 
-                backgroundColor: "rgba(245,158,11,0.12)", 
-                border: "1px solid rgba(245,158,11,0.25)"
+              style={{
+                backgroundColor: "#f3f0ff",
+                color: "#6c3bf5",
+                border: "1px solid #ddd6fe",
+                padding: "8px 24px",
+                borderRadius: "999px",
+                fontSize: "11px",
+                fontWeight: 900,
+                textTransform: "uppercase",
+                letterSpacing: "0.3em",
+                marginBottom: "24px",
+                display: "inline-block"
               }}
             >
-              <span style={{ fontSize: "11px", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.25em", color: "#fbbf24" }}>
-                📍 Conference Venue
-              </span>
+              The Venue
             </div>
           </motion.div>
 
@@ -81,13 +99,15 @@ export default function VenueSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-white font-extrabold"
+            transition={{ duration: 0.6, delay: 0.1 }}
             style={{
               fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: "clamp(2.5rem, 5vw, 4rem)",
-              lineHeight: 1.1,
-              letterSpacing: "-0.02em"
+              fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+              lineHeight: 1,
+              letterSpacing: "-0.04em",
+              fontWeight: 900,
+              color: "#0f172a",
+              marginBottom: "12px"
             }}
           >
             ABV-IIITM <span className="gradient-text">Gwalior</span>
@@ -97,74 +117,101 @@ export default function VenueSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-6 font-bold text-xl"
-            style={{ color: "#00b4d8", fontFamily: "'Space Grotesk', sans-serif" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            style={{ 
+              color: "#6c3bf5", 
+              fontSize: "1.25rem", 
+              fontWeight: 700,
+              fontFamily: "'Space Grotesk', sans-serif",
+              letterSpacing: "0.02em"
+            }}
           >
-            Gwalior, Madhya Pradesh, India
+            Madhya Pradesh, India
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left — 2×2 image grid */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="grid grid-cols-2 gap-4"
-          >
+        <div 
+          style={{ 
+            display: "grid", 
+            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", 
+            gap: "80px",
+            alignItems: "center"
+          }}
+        >
+          {/* Left Gallery */}
+          <div style={{ position: "relative", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
             {venueImages.map((img, i) => (
-              <div
+              <motion.div
                 key={i}
-                className="relative overflow-hidden rounded-[2rem] transition-all duration-500 hover:scale-[1.03] group shadow-2xl"
+                initial={{ opacity: 0, scale: 0.9, y: 30 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 style={{
+                  position: "relative",
                   aspectRatio: "1/1",
-                  border: "1px solid rgba(255,255,255,0.1)",
+                  borderRadius: "32px",
+                  overflow: "hidden",
+                  boxShadow: "0 25px 50px -12px rgba(0,0,0,0.08)",
+                  border: "1px solid rgba(0,0,0,0.05)",
+                  marginTop: i % 2 === 1 ? "40px" : "0",
+                  transform: `rotate(${i % 2 === 0 ? '-1deg' : '1deg'})`
                 }}
+                className="group"
               >
                 <Image
                   src={img.src}
                   alt={img.alt}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#060714] via-transparent to-transparent opacity-60" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <p className="text-[10px] font-extrabold uppercase tracking-widest text-white opacity-80 mb-1">
-                    Venue Location
-                  </p>
-                  <p className="text-sm font-bold text-white leading-tight">
-                    {img.alt}
-                  </p>
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(15,23,42,0.4), transparent 50%)" }} />
+                <div style={{ position: "absolute", bottom: "20px", left: "20px", right: "20px" }}>
+                  <p style={{ color: "#ffffff", fontSize: "12px", fontWeight: 700, lineHeight: 1.2 }}>{img.alt}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </motion.div>
+          </div>
 
-          {/* Right — Text */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="space-y-10"
-          >
-            <p
-              className="leading-relaxed text-lg"
-              style={{ color: "#94a3b8", lineHeight: 1.7 }}
+          {/* Right — Info Cards (Awards Style - INTENSE HOVER) */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "48px" }}>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
             >
-              Established in 1997,{" "}
-              <strong className="text-white">ABV-IIITM Gwalior</strong>{" "}
-              is an Institute of National Importance dedicated to excellence in Information Technology,
-              Management, Electronics, and interdisciplinary research.
-              Spanning over <span className="text-[#f59e0b] font-bold">160 acres</span>, the campus
-              provides a vibrant academic environment amidst historic scenic surroundings.
-            </p>
+              <h3 
+                style={{ 
+                  fontFamily: "'Space Grotesk', sans-serif", 
+                  fontSize: "1.75rem", 
+                  fontWeight: 800, 
+                  color: "#0f172a",
+                  marginBottom: "24px"
+                }}
+              >
+                A Legacy of <span style={{ color: "#6c3bf5" }}>Excellence.</span>
+              </h3>
+              <p
+                style={{ 
+                  color: "#64748b", 
+                  fontSize: "1.125rem", 
+                  lineHeight: 1.7, 
+                  fontWeight: 500 
+                }}
+              >
+                Established in 1997, <strong style={{ color: "#0f172a" }}>ABV-IIITM Gwalior</strong> is an Institute of National Importance dedicated to the future of Technology and Management.
+              </p>
+            </motion.div>
 
-            {/* Info tiles */}
-            <div className="grid grid-cols-2 gap-4">
+            {/* Info Grid (High Intensity Hover) */}
+            <div 
+              style={{ 
+                display: "grid", 
+                gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", 
+                gap: "20px" 
+              }}
+            >
               {tiles.map((item, i) => (
                 <motion.div
                   key={i}
@@ -172,50 +219,117 @@ export default function VenueSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="flex items-start gap-4 p-5 rounded-[2rem] transition-all duration-300 hover:bg-white/5"
                   style={{
-                    backgroundColor: "rgba(255,255,255,0.03)",
-                    border: "1px solid rgba(255,255,255,0.06)",
-                    backdropFilter: "blur(12px)",
+                    backgroundColor: "#ffffff",
+                    border: "1px solid rgba(0,0,0,0.06)",
+                    borderRadius: "24px",
+                    padding: "32px 24px",
+                    boxShadow: "0 10px 25px -5px rgba(0,0,0,0.02)",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "16px",
+                    position: "relative",
+                    overflow: "hidden",
+                    transition: "all 0.5s cubic-bezier(0.16, 1, 0.3, 1)"
                   }}
+                  className="group hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02]"
                 >
-                  <span className="text-2xl shrink-0">{item.icon}</span>
-                  <div>
-                    <p className="text-xs font-extrabold text-white uppercase tracking-wider mb-1">
+                  {/* Effect: INTENSE Color Filling Background */}
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none"
+                    style={{
+                      background: `linear-gradient(135deg, ${item.color}25 0%, ${item.color}05 100%)`, // Increased to 25% opacity
+                    }}
+                  />
+                  
+                  {/* Effect: BRIGHTER Glass Shimmer sweep */}
+                  <div
+                    className="absolute -inset-1 bg-gradient-to-r from-transparent via-white/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-1000 group-hover:translate-x-full pointer-events-none"
+                  />
+
+                  <div style={{ position: "relative", zIndex: 10 }}>
+                    {/* Expanding Accent Line */}
+                    <div 
+                      className="transition-all duration-500 group-hover:w-full"
+                      style={{ 
+                        backgroundColor: item.color,
+                        width: "32px",
+                        height: "5px", // Slightly thicker
+                        marginBottom: "20px",
+                        boxShadow: `0 0 10px ${item.color}40`
+                      }}
+                    />
+                    <p 
+                      className="transition-colors duration-500 group-hover:text-black"
+                      style={{ fontSize: "12px", fontWeight: 900, textTransform: "uppercase", color: "#0f172a", letterSpacing: "0.15em", marginBottom: "8px" }}
+                    >
                       {item.label}
                     </p>
-                    <p className="text-xs font-medium text-slate-400">
+                    <p 
+                      style={{ fontSize: "14px", fontWeight: 500, color: "#64748b", lineHeight: 1.5 }}
+                      className="transition-colors duration-500 group-hover:text-slate-800"
+                    >
                       {item.sub}
                     </p>
                   </div>
+
+                  {/* Added Bottom Glow Effect */}
+                  <div 
+                    className="absolute bottom-0 left-0 w-full h-0.5 opacity-0 group-hover:opacity-100 transition-all duration-500"
+                    style={{ backgroundColor: item.color, boxShadow: `0 0 15px ${item.color}` }}
+                  />
                 </motion.div>
               ))}
             </div>
 
-            {/* Map Placeholder */}
-            <div
-              className="relative h-40 rounded-[2rem] overflow-hidden group shadow-2xl"
-              style={{ border: "1px solid rgba(255,255,255,0.1)" }}
+            {/* Location CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <Image
-                src="https://placehold.co/600x150/060714/1e293b?text=ABV-IIITM+Gwalior+Campus+Map"
-                alt="Venue Map"
-                fill
-                className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-[2px] transition-all duration-500 group-hover:backdrop-blur-0">
-                <a
-                  href="https://maps.google.com/?q=ABV-IIITM+Gwalior"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-3 rounded-full font-bold text-white transition-all duration-300 border border-white/20 hover:bg-white hover:text-black shadow-xl"
+              <a
+                href="https://maps.google.com/?q=ABV-IIITM+Gwalior"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  backgroundColor: "#0f172a",
+                  color: "#ffffff",
+                  padding: "24px 32px",
+                  borderRadius: "24px",
+                  textDecoration: "none",
+                  transition: "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+                  boxShadow: "0 20px 40px -10px rgba(15,23,42,0.2)"
+                }}
+                className="group hover:bg-[#6c3bf5] hover:scale-[1.01] hover:shadow-3xl"
+              >
+                <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                  <span style={{ fontSize: "10px", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.2em", opacity: 0.6 }}>Direct Directions</span>
+                  <span style={{ fontSize: "1.125rem", fontWeight: 800 }}>Explore ABV-IIITM on Maps</span>
+                </div>
+                <div 
+                  style={{ 
+                    width: "48px", 
+                    height: "48px", 
+                    borderRadius: "50%", 
+                    backgroundColor: "rgba(255,255,255,0.1)", 
+                    display: "flex", 
+                    alignItems: "center", 
+                    justifyContent: "center",
+                    fontSize: "20px",
+                    transition: "transform 0.5s ease"
+                  }}
+                  className="group-hover:rotate-45"
                 >
-                  View Location ↗
-                </a>
-              </div>
-            </div>
-          </motion.div>
+                  ↗
+                </div>
+              </a>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

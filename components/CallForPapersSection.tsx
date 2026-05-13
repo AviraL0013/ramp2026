@@ -19,21 +19,18 @@ const submissionSteps = [
   {
     title: "Full Paper",
     desc: "Present your original research findings. Accepted papers will be published in the conference proceedings and submitted for inclusion in IEEE Xplore, subject to meeting quality standards.",
-    detail: "4–6 Pages • IEEE Standard Format • Double Blind Review",
     badge: "Deadline Oct 31",
     color: "#6c3bf5"
   },
   {
     title: "Special Sessions",
     desc: "Organize a session on a specific topic of interest. Proposals should include a brief description, list of potential speakers, and the significance of the session.",
-    detail: "Topic Proposals • Expert Panels • Invited Talks",
     badge: "Deadline Oct 15",
     color: "#00b4d8"
   },
   {
     title: "IEEE Xplore",
     desc: "Maximize your research impact. All presented papers undergo a rigorous peer-review process and are indexed globally to ensure maximum visibility for your work.",
-    detail: "Global Indexing • High Citation Potential",
     badge: "Publication",
     color: "#10b981"
   },
@@ -56,7 +53,7 @@ export default function CallForPapersSection() {
         backgroundSize: "80px 80px"
       }}
     >
-      {/* Cinematic Background Particles (Like in Hero) */}
+      {/* Cinematic Background Particles */}
       <div className="absolute inset-0 z-0">
         {[...Array(20)].map((_, i) => (
           <div
@@ -75,7 +72,6 @@ export default function CallForPapersSection() {
             }}
           />
         ))}
-        {/* Large Atmospheric Glows (Hero Style) */}
         <div className="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] bg-[#6c3bf5]/5 rounded-full blur-[120px] animate-pulse" />
         <div className="absolute bottom-1/4 right-1/4 w-[50vw] h-[50vw] bg-[#00b4d8]/5 rounded-full blur-[150px] animate-pulse" />
       </div>
@@ -142,17 +138,17 @@ export default function CallForPapersSection() {
           </motion.p>
         </div>
 
-        {/* WHITE Marquee Area */}
+        {/* DARK NAVY Marquee Area with WHITE Font */}
         <div 
-          className="relative overflow-hidden border-y border-slate-100"
+          className="relative overflow-hidden shadow-2xl"
           style={{ 
             marginBottom: "30px", 
-            padding: "20px 0",
-            backgroundColor: isDark ? "rgba(255,255,255,0.02)" : "#ffffff",
+            padding: "24px 0",
+            backgroundColor: "#060714", // Dark Navy from Image
             marginLeft: "-100vw",
             marginRight: "-100vw",
             paddingLeft: "100vw",
-            paddingRight: "100vw"
+            paddingRight: "100vw",
           }}
         >
           <div className="flex whitespace-nowrap">
@@ -164,10 +160,9 @@ export default function CallForPapersSection() {
               {topics.map((topic, i) => (
                 <span
                   key={i}
-                  className="text-lg font-bold"
+                  className="text-lg font-bold text-white opacity-95 hover:opacity-100 transition-opacity"
                   style={{ 
                     fontFamily: "'Space Grotesk', sans-serif",
-                    color: isDark ? "#ffffff40" : "#4c1d95" 
                   }}
                 >
                   {topic}
@@ -182,10 +177,9 @@ export default function CallForPapersSection() {
               {topics.map((topic, i) => (
                 <span
                   key={`dup-${i}`}
-                  className="text-lg font-bold"
+                  className="text-lg font-bold text-white opacity-95 hover:opacity-100 transition-opacity"
                   style={{ 
                     fontFamily: "'Space Grotesk', sans-serif",
-                    color: isDark ? "#ffffff40" : "#4c1d95" 
                   }}
                 >
                   {topic}
@@ -220,7 +214,6 @@ export default function CallForPapersSection() {
                 backdropFilter: "blur(12px)",
               }}
             >
-              {/* Hover Filling Effect */}
               <div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none"
                 style={{
@@ -229,11 +222,9 @@ export default function CallForPapersSection() {
                     : `linear-gradient(135deg, ${step.color}10 0%, ${step.color}05 100%)`,
                 }}
               />
-              
               <div
                 className="absolute -inset-1 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-1000 group-hover:translate-x-full pointer-events-none"
               />
-
               <div className="relative z-10 flex flex-col items-center w-full">
                 <span 
                   className="px-4 py-1.5 rounded-full mb-6 inline-block font-bold uppercase transition-all duration-500 group-hover:scale-110"
@@ -242,44 +233,40 @@ export default function CallForPapersSection() {
                     color: step.color,
                     fontSize: "9px",
                     letterSpacing: "0.15em",
-                    border: `1px solid ${step.color}25`
+                    border: `1px solid ${step.color}25`,
+                    padding: "8px 12px",
+                    marginBottom:"10px"
                   }}
                 >
                   {step.badge}
                 </span>
-                
                 <h3 
                   className="text-2xl font-bold tracking-tight mb-4 transition-colors duration-500" 
                   style={{ 
                     fontFamily: "'Space Grotesk', sans-serif",
-                    color: isDark ? "var(--text-base)" : "#0f172a"
+                    color: isDark ? "var(--text-base)" : "#0f172a",
+                    marginBottom:"10px"
                   }}
                 >
                   {step.title}
                 </h3>
-                
                 <p 
                   className="text-sm font-medium leading-relaxed mb-8 transition-colors duration-500"
                   style={{ 
                     maxWidth: "280px",
-                    color: isDark ? "var(--text-muted)" : "#64748b"
+                    color: isDark ? "var(--text-muted)" : "#64748b",
+                    marginBottom: "10px"
                   }}
                 >
                   {step.desc}
                 </p>
-
                 <div 
                   className="w-full pt-6"
                   style={{ borderTop: isDark ? "1px solid rgba(255,255,255,0.05)" : "1px solid rgba(0,0,0,0.03)" }}
                 >
-                  <span 
-                    className="text-[10px] font-bold uppercase tracking-widest text-slate-400 group-hover:text-slate-600 transition-colors duration-500"
-                  >
-                    {step.detail}
-                  </span>
+                
                 </div>
               </div>
-
               <div 
                 className="absolute top-0 left-0 w-full h-1"
                 style={{ backgroundColor: step.color }}

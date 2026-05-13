@@ -194,7 +194,6 @@ export default function HeroSection() {
                   </svg>
                 </div>
                 <div>
-                  <p style={{ fontSize: "0.6rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#6c3bf5", marginBottom: "0.125rem" }}>Date</p>
                   <p style={{ fontSize: "0.8125rem", fontWeight: 700, color: isDark ? "var(--text-base)" : "#0f172a" }}>January 26–27, 2027</p>
                 </div>
               </div>
@@ -230,7 +229,6 @@ export default function HeroSection() {
                   </svg>
                 </div>
                 <div>
-                  <p style={{ fontSize: "0.6rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em", color: "#f59e0b", marginBottom: "0.125rem" }}>Venue</p>
                   <p style={{ fontSize: "0.8125rem", fontWeight: 700, color: isDark ? "var(--text-base)" : "#0f172a" }}>ABV-IIITM Gwalior, India</p>
                 </div>
               </div>
