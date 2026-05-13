@@ -1,109 +1,122 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { useTheme } from "@/components/ThemeProvider";
+
 const highlights = [
-  {
-    icon: "🏛️",
-    color: "#6c3bf5",
-    bg: "#f3f0ff",
-    border: "#e0d9ff",
-    title: "Government Participation",
-    desc: "Active participation from ministries of the Government of India.",
-  },
-  {
-    icon: "🎤",
-    color: "#00b4d8",
-    bg: "#e0f8ff",
-    border: "#b3ecff",
-    title: "Keynote & Plenary Talks",
-    desc: "World-renowned academics, industry leaders and research pioneers.",
-  },
-  {
-    icon: "💡",
-    color: "#f59e0b",
-    bg: "#fef9e7",
-    border: "#fde68a",
-    title: "Expert Invited Talks",
-    desc: "Globally reputed experts on cutting-edge RF and photonics topics.",
-  },
-  {
-    icon: "📊",
-    color: "#10b981",
-    bg: "#ecfdf5",
-    border: "#a7f3d0",
-    title: "Technical Sessions",
-    desc: "Focused sessions on emerging areas, panels, and workshops.",
-  },
-  {
-    icon: "🏭",
-    color: "#ef4444",
-    bg: "#fef2f2",
-    border: "#fecaca",
-    title: "Industry Exhibitions",
-    desc: "Showcasing key product launches and innovations in RF & microwave.",
-  },
-  {
-    icon: "🗂️",
-    color: "#3b82f6",
-    bg: "#eff6ff",
-    border: "#bfdbfe",
-    title: "80+ Exhibition Booths",
-    desc: "Industry booths featuring the latest in antenna and photonics technology.",
-  },
-  {
-    icon: "📚",
-    color: "#8b5cf6",
-    bg: "#faf5ff",
-    border: "#ddd6fe",
-    title: "International Book Stalls",
-    desc: "Esteemed publishers with live reading library corners.",
-  },
+  { icon: "🏛️", color: "#6c3bf5", title: "Government Participation", desc: "Active participation from ministries of the Government of India." },
+  { icon: "🎤", color: "#00b4d8", title: "Keynote & Plenary Talks", desc: "World-renowned academics, industry leaders and research pioneers." },
+  { icon: "💡", color: "#f59e0b", title: "Expert Invited Talks", desc: "Globally reputed experts on cutting-edge RF and photonics topics." },
+  { icon: "📊", color: "#10b981", title: "Technical Sessions", desc: "Focused sessions on emerging areas, panels, and workshops." },
+  { icon: "🏭", color: "#ef4444", title: "Industry Exhibitions", desc: "Showcasing key product launches and innovations in RF & microwave." },
+  { icon: "🗂️", color: "#3b82f6", title: "80+ Exhibition Booths", desc: "Industry booths featuring the latest in antenna and photonics technology." },
+  { icon: "📚", color: "#8b5cf6", title: "International Book Stalls", desc: "Esteemed publishers with live reading library corners." },
 ];
 
 export default function HighlightCards() {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
   return (
-    <section className="section-py bg-slate-50">
-      <div className="max-w-screen-xl mx-auto px-6 lg:px-10">
+    <section
+      className="section-py"
+      style={{ backgroundColor: isDark ? "var(--bg)" : "#ffffff" }}
+    >
+      <div className="container-center">
         {/* Heading */}
         <div className="text-center mb-14">
-          <div className="section-label bg-cyan-50 text-[#00b4d8] border border-cyan-100 mx-auto w-fit">
-            Conference Highlights
-          </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-slate-900 mt-2">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <div
+              className="section-label mx-auto"
+              style={{
+                backgroundColor: isDark ? "rgba(0,180,216,0.12)" : "#e0f8ff",
+                color: "#00b4d8",
+                border: isDark ? "1px solid rgba(0,180,216,0.3)" : "1px solid #b3ecff",
+              }}
+            >
+              Conference Highlights
+            </div>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="font-extrabold mt-2"
+            style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontSize: "clamp(1.8rem, 4vw, 2.75rem)",
+              color: isDark ? "var(--text-base)" : "#0f172a",
+            }}
+          >
             What Makes <span className="gradient-text">RAMP 2027</span> Special
-          </h2>
-          <p className="text-slate-500 mt-3 max-w-xl mx-auto text-sm leading-relaxed">
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-3 max-w-xl mx-auto"
+            style={{ color: isDark ? "var(--text-muted)" : "#64748b" }}
+          >
             A comprehensive 2-day event designed for researchers, engineers, and industry professionals.
-          </p>
+          </motion.p>
         </div>
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {highlights.map((item, i) => (
-            <div
+            <motion.div
               key={i}
-              className="highlight-card p-6 group cursor-default"
-              style={{ borderColor: item.border }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.45, delay: i * 0.07, ease: "easeOut" }}
+              whileHover={{ y: -6, transition: { duration: 0.25 } }}
+              className="p-6 rounded-2xl group cursor-default relative overflow-hidden"
+              style={{
+                backgroundColor: isDark ? "var(--bg-card)" : "#ffffff",
+                border: isDark ? "1px solid var(--border)" : "1px solid #e2e8f0",
+                boxShadow: "var(--shadow-card)",
+              }}
             >
               {/* Icon */}
               <div
                 className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-5 transition-transform duration-300 group-hover:scale-110"
-                style={{ background: item.bg, border: `1.5px solid ${item.border}` }}
+                style={{
+                  backgroundColor: `${item.color}${isDark ? "22" : "14"}`,
+                  border: `1.5px solid ${item.color}${isDark ? "40" : "28"}`,
+                }}
               >
                 {item.icon}
               </div>
 
               <h3
-                className="text-base font-bold text-slate-800 mb-2 group-hover:transition-colors duration-200"
-                style={{ color: undefined }}
+                className="text-base font-bold mb-2"
+                style={{ color: isDark ? "var(--text-base)" : "#0f172a" }}
               >
                 {item.title}
               </h3>
-              <p className="text-sm text-slate-500 leading-relaxed">{item.desc}</p>
+              <p
+                className="text-sm leading-relaxed"
+                style={{ color: isDark ? "var(--text-muted)" : "#64748b" }}
+              >
+                {item.desc}
+              </p>
 
               {/* Bottom accent */}
               <div
-                className="mt-4 h-0.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute bottom-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{ background: `linear-gradient(90deg, ${item.color}, transparent)` }}
               />
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

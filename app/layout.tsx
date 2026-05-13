@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -15,7 +17,7 @@ export const metadata: Metadata = {
     "IEEE conference",
     "RF conference",
     "antenna microwave photonics",
-    "IIM Nagpur",
+    "ABV-IIITM Gwalior",
     "electromagnetics conference",
   ],
   openGraph: {
@@ -33,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -46,10 +48,14 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-white text-slate-800 antialiased">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+      <body>
+        <ThemeProvider>
+          <SmoothScrollProvider>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </SmoothScrollProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

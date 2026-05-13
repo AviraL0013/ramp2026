@@ -1,9 +1,22 @@
-import type { Metadata } from "next";
-import PageHero from "@/components/PageHero";
+"use client";
 
-export const metadata: Metadata = { title: "Registration" };
+import PageHero from "@/components/PageHero";
+import { motion } from "framer-motion";
+import { useTheme } from "@/components/ThemeProvider";
+
+const registrationRows = [
+  { cat: "IEEE Student Member", early: "₹3,000", regular: "₹4,000", late: "₹5,000" },
+  { cat: "IEEE Member", early: "₹6,000", regular: "₹8,000", late: "₹10,000" },
+  { cat: "Non-IEEE Member (Student)", early: "₹4,000", regular: "₹5,000", late: "₹6,000" },
+  { cat: "Non-IEEE Member", early: "₹8,000", regular: "₹10,000", late: "₹12,000" },
+  { cat: "Foreign Participant", early: "$150", regular: "$200", late: "$250" },
+  { cat: "Industry / Corporate", early: "₹12,000", regular: "₹15,000", late: "₹18,000" },
+];
 
 export default function RegistrationPage() {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
   return (
     <>
       <PageHero
@@ -15,54 +28,80 @@ export default function RegistrationPage() {
         subtitle="Register for RAMP 2027 – January 26–27, 2027, ABV-IIITM Gwalior."
       />
 
-      {/* Registration fee table */}
-      <section className="section-py bg-white">
-        <div className="max-w-screen-xl mx-auto px-6 lg:px-10">
+      <section className="section-py" style={{ backgroundColor: isDark ? "var(--bg)" : "#ffffff" }}>
+        <div className="container-center">
+          {/* Header */}
           <div className="text-center mb-12">
-            <div className="section-label bg-purple-50 text-[#6c3bf5] border border-purple-100 mx-auto w-fit mb-2">
+            <div
+              className="section-label mx-auto mb-2"
+              style={{
+                backgroundColor: isDark ? "rgba(108,59,245,0.15)" : "#f3f0ff",
+                color: "#6c3bf5",
+                border: isDark ? "1px solid rgba(108,59,245,0.35)" : "1px solid #ddd6fe",
+              }}
+            >
               Registration Categories
             </div>
-            <h2 className="font-display font-extrabold text-3xl text-slate-900">
+            <h2
+              className="font-extrabold text-3xl"
+              style={{ fontFamily: "'Space Grotesk', sans-serif", color: isDark ? "var(--text-base)" : "#0f172a" }}
+            >
               Registration <span className="gradient-text">Fee Structure</span>
             </h2>
-            <p className="text-slate-500 mt-3 text-sm">
+            <p className="mt-3 text-sm" style={{ color: isDark ? "var(--text-muted)" : "#64748b" }}>
               All fees in INR (Indian Rupees). Foreign participant fees in USD.
             </p>
           </div>
 
           {/* Table */}
-          <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm mb-10">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="overflow-x-auto rounded-2xl mb-10"
+            style={{ border: isDark ? "1px solid var(--border)" : "1px solid #e2e8f0", boxShadow: "var(--shadow-card)" }}
+          >
             <table className="w-full min-w-[600px] text-sm">
               <thead>
                 <tr className="bg-gradient-to-r from-[#6c3bf5] to-[#00b4d8] text-white">
-                  <th className="px-6 py-4 text-left font-bold text-sm">Category</th>
-                  <th className="px-6 py-4 text-center font-bold text-sm">Early Bird</th>
-                  <th className="px-6 py-4 text-center font-bold text-sm">Regular</th>
-                  <th className="px-6 py-4 text-center font-bold text-sm">Late / On-site</th>
+                  <th className="px-6 py-4 text-left font-bold">Category</th>
+                  <th className="px-6 py-4 text-center font-bold">Early Bird</th>
+                  <th className="px-6 py-4 text-center font-bold">Regular</th>
+                  <th className="px-6 py-4 text-center font-bold">Late / On-site</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
-                {[
-                  { cat: "IEEE Student Member", early: "₹3,000", regular: "₹4,000", late: "₹5,000" },
-                  { cat: "IEEE Member", early: "₹6,000", regular: "₹8,000", late: "₹10,000" },
-                  { cat: "Non-IEEE Member (Student)", early: "₹4,000", regular: "₹5,000", late: "₹6,000" },
-                  { cat: "Non-IEEE Member", early: "₹8,000", regular: "₹10,000", late: "₹12,000" },
-                  { cat: "Foreign Participant", early: "$150", regular: "$200", late: "$250" },
-                  { cat: "Industry / Corporate", early: "₹12,000", regular: "₹15,000", late: "₹18,000" },
-                ].map((row, i) => (
-                  <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-slate-50/60"}>
-                    <td className="px-6 py-4 font-semibold text-slate-700">{row.cat}</td>
-                    <td className="px-6 py-4 text-center text-green-700 font-bold">{row.early}</td>
-                    <td className="px-6 py-4 text-center text-[#6c3bf5] font-bold">{row.regular}</td>
-                    <td className="px-6 py-4 text-center text-slate-500 font-semibold">{row.late}</td>
+              <tbody>
+                {registrationRows.map((row, i) => (
+                  <tr
+                    key={i}
+                    style={{
+                      backgroundColor: i % 2 === 0
+                        ? isDark ? "var(--bg-card)" : "#ffffff"
+                        : isDark ? "rgba(255,255,255,0.02)" : "#f8fafc",
+                      borderTop: isDark ? "1px solid var(--border)" : "1px solid #f1f5f9",
+                    }}
+                  >
+                    <td className="px-6 py-4 font-semibold" style={{ color: isDark ? "var(--text-base)" : "#334155" }}>
+                      {row.cat}
+                    </td>
+                    <td className="px-6 py-4 text-center font-bold text-green-500">{row.early}</td>
+                    <td className="px-6 py-4 text-center font-bold text-[#6c3bf5]">{row.regular}</td>
+                    <td className="px-6 py-4 text-center font-semibold" style={{ color: isDark ? "var(--text-faint)" : "#94a3b8" }}>
+                      {row.late}
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-          </div>
+          </motion.div>
 
-          {/* Notes */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
+          {/* Info cards */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10"
+          >
             {[
               {
                 icon: "📋",
@@ -75,7 +114,6 @@ export default function RegistrationPage() {
                   "Certificate of participation",
                 ],
                 color: "#6c3bf5",
-                bg: "#f3f0ff",
               },
               {
                 icon: "📅",
@@ -88,38 +126,42 @@ export default function RegistrationPage() {
                   "Each registration covers one paper",
                 ],
                 color: "#f59e0b",
-                bg: "#fef9e7",
               },
             ].map((item, i) => (
               <div
                 key={i}
-                className="rounded-2xl border p-6"
-                style={{ borderColor: `${item.color}30`, background: item.bg }}
+                className="rounded-2xl p-6"
+                style={{
+                  backgroundColor: isDark ? "var(--bg-card)" : "#ffffff",
+                  border: isDark ? `1px solid ${item.color}35` : `1px solid ${item.color}25`,
+                  boxShadow: "var(--shadow-card)",
+                }}
               >
                 <div className="flex items-center gap-3 mb-4">
                   <span className="text-2xl">{item.icon}</span>
-                  <h3 className="font-bold text-slate-800">{item.title}</h3>
+                  <h3 className="font-bold" style={{ color: isDark ? "var(--text-base)" : "#0f172a" }}>
+                    {item.title}
+                  </h3>
                 </div>
                 <ul className="space-y-2">
                   {item.points.map((p, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-slate-600">
-                      <span className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style={{ background: item.color }} />
+                    <li key={j} className="flex items-start gap-2 text-sm" style={{ color: isDark ? "var(--text-muted)" : "#64748b" }}>
+                      <span className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style={{ backgroundColor: item.color }} />
                       {p}
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
-          </div>
+          </motion.div>
 
           <div className="text-center">
-            <a
-              href="mailto:ramp2027registrations@iiitm.ac.in"
-              className="btn-accent !px-10 !py-4 !text-base"
-            >
+            <a href="mailto:ramp2027registrations@iiitm.ac.in" className="btn-accent !px-10 !py-4 !text-base">
               Register / Enquire via Email
             </a>
-            <p className="text-slate-400 text-xs mt-4">Online registration portal opening soon.</p>
+            <p className="text-xs mt-4" style={{ color: isDark ? "var(--text-faint)" : "#94a3b8" }}>
+              Online registration portal opening soon.
+            </p>
           </div>
         </div>
       </section>
