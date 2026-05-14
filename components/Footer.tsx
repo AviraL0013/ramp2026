@@ -246,20 +246,54 @@ export default function Footer() {
         }}
       >
         <div className="container-center">
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "12px" }}>
-            <p style={{ fontSize: "10px", color: "#475569", fontWeight: 600 }}>
-              © {new Date().getFullYear()} IEEE RAMP.
-            </p>
-            <div style={{ display: "flex", gap: "16px" }}>
-              {["Privacy", "Terms", "Refunds"].map((item) => (
-                <a key={item} href="#" style={{ fontSize: "10px", color: "#475569", textDecoration: "none", fontWeight: 600 }} className="hover:text-white transition-colors">
-                  {item}
-                </a>
-              ))}
-            </div>
-            {/* Removed the 'Built for Excellence' part as requested from the screenshot */}
-          </div>
-        </div>
+  <div
+    style={{
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "space-between",
+      alignItems: "center",
+      gap: "12px",
+    }}
+  >
+    <p style={{ fontSize: "10px", color: "#475569", fontWeight: 600 }}>
+      © {new Date().getFullYear()} IEEE RAMP.
+    </p>
+
+    <div style={{ display: "flex", gap: "16px" }}>
+      {["Privacy", "Terms", "Refunds"].map((item) => (
+        <a
+          key={item}
+          href="#"
+          style={{
+            fontSize: "10px",
+            color: "#475569",
+            textDecoration: "none",
+            fontWeight: 600,
+          }}
+          className="hover:text-white transition-colors"
+        >
+          {item}
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <p
+    style={{
+      fontSize: "10px",
+      color: "#64748b",
+      marginTop: "12px",
+      lineHeight: "1.6",
+      textAlign: "center",
+      fontWeight: 500,
+    }}
+  >
+    The Microsoft CMT service was used for managing the peer-reviewing
+    process for this conference. This service was provided for free by
+    Microsoft and they bore all expenses, including costs for Azure cloud
+    services as well as for software development and support.
+  </p>
+</div>
       </div>
     </footer>
   );
